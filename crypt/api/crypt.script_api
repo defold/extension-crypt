@@ -1,0 +1,49 @@
+- name: crypt
+  type: table
+  desc: Functions and constants for interacting with various hash and encode/decode algorithms
+
+  members:
+
+#*****************************************************************************************************
+#***** HASH ******************************************************************************************
+#*****************************************************************************************************
+
+  - name: hash_sha256
+    type: function
+
+    parameters:
+      - name: buffer
+        type: string
+
+    return:
+      - name: output
+        type: string
+
+#*****************************************************************************************************
+#***** ENCODE/DECODE *********************************************************************************
+#*****************************************************************************************************
+
+  - name: encode_base64
+    type: function
+
+    parameters:
+      - name: input
+        type: string
+
+    return:
+      - name: output
+        type: string
+
+
+#*****************************************************************************************************
+
+  - name: decode_base64
+    type: function
+
+    parameters:
+      - name: input
+        type: string
+
+    return:
+      - name: output
+        type: string

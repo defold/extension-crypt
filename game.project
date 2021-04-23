@@ -9,8 +9,7 @@ width = 960
 height = 640
 
 [project]
-title = myextension
+title = crypt
 
 [library]
-include_dirs = myextension
-
+include_dirs = crypt

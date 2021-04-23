@@ -1,30 +1,30 @@
+local function hash256()
+	local expected = {0x4E,0x95,0x18,0x57,0x54,0x22,0xC9,0x08,0x73,0x96,0x88,0x7C,0xE2,0x04,0x77,0xAB,0x5F,0x55,0x0A,0x4A,0xA3,0xD1,0x61,0xC5,0xC2,0x2A,0x99,0x6B,0x0A,0xBB,0x8B,0x35}
+	local buffer = "This is a string"
+
+	local digest = crypt.hash_sha256(buffer)
+	print("sha256 source:", buffer)
+
+	local digest_str = ""
+	for i=1,#digest do
+		local byte = digest:byte(i, i)
+		assert(byte == expected[i])
+		digest_str = digest_str .. tostring(byte) .. ((i < #digest) and "," or "")
+	end
+	print("sha256 digest:", digest_str)
+end
+
+local function base64()
+	local source = "foobar"
+	print("b64 source:", source)
+	local encoded = crypt.encode_base64(source)
+	print("b64 encode:", encoded)
+	local decoded = crypt.decode_base64(encoded)
+	print("b64 decode:", decoded)
+	assert(source == decoded)
+end
+
 function init(self)
-	local s = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	local reverse_s = myextension.reverse(s)
-	print(reverse_s) --> ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba
-end
-
-function final(self)
-	-- Add finalization code here
-	-- Remove this function if not needed
-end
-
-function update(self, dt)
-	-- Add update code here
-	-- Remove this function if not needed
-end
-
-function on_message(self, message_id, message, sender)
-	-- Add message-handling code here
-	-- Remove this function if not needed
-end
-
-function on_input(self, action_id, action)
-	-- Add input-handling code here
-	-- Remove this function if not needed
-end
-
-function on_reload(self)
-	-- Add reload-handling code here
-	-- Remove this function if not needed
+	hash256()
+	base64()
 end
