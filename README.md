@@ -1,4 +1,4 @@
-[![Actions Status Alpha](https://github.com/defold/extension-crypt/workflows/bob/badge.svg)](https://github.com/defold/extension-crypt/actions)
+[![Actions Status Alpha](https://github.com/defold/extension-crypt/workflows/bob.yml/badge.svg)](https://github.com/defold/extension-crypt/actions)
 
 # Cryptographic functions for Defold
 
