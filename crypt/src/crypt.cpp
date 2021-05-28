@@ -5,6 +5,7 @@
 #include <dmsdk/sdk.h>
 #include <dmsdk/dlib/crypt.h>
 #include <string.h>
+#include <stdlib.h>
 
 static int Crypt_HashSha256(lua_State* L)
 {
