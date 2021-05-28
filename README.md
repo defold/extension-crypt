@@ -1,3 +1,5 @@
+[![Actions Status Alpha](https://github.com/defold/extension-crypt/workflows/bob/badge.svg)](https://github.com/defold/extension-crypt/actions)
+
 # Cryptographic functions for Defold
 
 Defold [native extension](https://www.defold.com/manuals/extensions/) for interacting with various hash and encode/decode algorithms.
