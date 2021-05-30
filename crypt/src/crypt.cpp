@@ -7,6 +7,19 @@
 #include <string.h>
 #include <stdlib.h>
 
+static int Crypt_HashSha1(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+
+    const char* buf = luaL_checkstring(L, 1);
+    uint32_t buflen = strlen(buf);
+    uint8_t digest[20] = {0};
+
+    dmCrypt::HashSha1((const uint8_t*)buf, buflen, digest);
+    lua_pushlstring(L, (char*)&digest, 20);
+    return 1;
+}
+
 static int Crypt_HashSha256(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 1);
@@ -20,6 +33,31 @@ static int Crypt_HashSha256(lua_State* L)
     return 1;
 }
 
+static int Crypt_HashSha512(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+
+    const char* buf = luaL_checkstring(L, 1);
+    uint32_t buflen = strlen(buf);
+    uint8_t digest[64] = {0};
+
+    dmCrypt::HashSha512((const uint8_t*)buf, buflen, digest);
+    lua_pushlstring(L, (char*)&digest, 64);
+    return 1;
+}
+
+static int Crypt_HashMd5(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+
+    const char* buf = luaL_checkstring(L, 1);
+    uint32_t buflen = strlen(buf);
+    uint8_t digest[16] = {0};
+
+    dmCrypt::HashMd5((const uint8_t*)buf, buflen, digest);
+    lua_pushlstring(L, (char*)&digest, 16);
+    return 1;
+}
 
 static int Crypt_Base64Encode(lua_State* L)
 {
@@ -74,7 +112,10 @@ static int Crypt_Base64Decode(lua_State* L)
 
 static const luaL_reg Module_methods[] =
 {
+    {"hash_sha1", Crypt_HashSha1},
     {"hash_sha256", Crypt_HashSha256},
+    {"hash_sha512", Crypt_HashSha512},
+    {"hash_md5", Crypt_HashMd5},
     {"encode_base64", Crypt_Base64Encode},
     {"decode_base64", Crypt_Base64Decode},
     {0, 0}
