@@ -31,11 +31,7 @@ static int Crypt_Base64Encode(lua_State* L)
     // 4 characters to represent every 3 bytes with padding applied
     // for binary data which isn't an exact multiple of 3 bytes.
     // https://stackoverflow.com/a/7609180/1266551
-    uint32_t dstlen = srclen / 3 * 4;
-    if (dstlen % 3 != 0)
-    {
-        dstlen += 4;
-    }
+    uint32_t dstlen = srclen * 4 / 3 + 4;
     uint8_t* dst = (uint8_t*)malloc(dstlen);
 
     if (dmCrypt::Base64Encode((const uint8_t*)src, srclen, dst, &dstlen))

@@ -15,13 +15,15 @@ local function hash256()
 end
 
 local function base64()
-	local source = "foobar"
-	print("b64 source:", source)
-	local encoded = crypt.encode_base64(source)
-	print("b64 encode:", encoded)
-	local decoded = crypt.decode_base64(encoded)
-	print("b64 decode:", decoded)
-	assert(source == decoded)
+	for i = 1,20 do
+		local source = ("a"):rep(i)
+		print("b64 source:", source)
+		local encoded = crypt.encode_base64(source)
+		print("b64 encode:", encoded)
+		local decoded = crypt.decode_base64(encoded)
+		print("b64 decode:", decoded)
+		assert(source == decoded)
+	end
 end
 
 function init(self)
