@@ -18,10 +18,12 @@ We recommend using a link to a zip file of a [specific release](https://github.c
 ## Usage
 
 The API provides the following functions:
-
+* `crypt.hash_sha1(source)`
+* `crypt.hash_sha256(source)`
+* `crypt.hash_sha512(source)`
+* `crypt.hash_md5(source)`
 * `crypt.encode_base64(source)`
 * `crypt.decode_base64(source)`
-* `crypt.hash_sha256(source)`
 
 
 ## Source code
