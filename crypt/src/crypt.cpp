@@ -11,8 +11,8 @@ static int Crypt_HashSha1(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 1);
 
-    const char* buf = luaL_checkstring(L, 1);
-    uint32_t buflen = strlen(buf);
+    size_t buflen;
+    const char* buf = luaL_checklstring(L, 1, &buflen);
     uint8_t digest[20] = {0};
 
     dmCrypt::HashSha1((const uint8_t*)buf, buflen, digest);
@@ -24,8 +24,8 @@ static int Crypt_HashSha256(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 1);
 
-    const char* buf = luaL_checkstring(L, 1);
-    uint32_t buflen = strlen(buf);
+    size_t buflen;
+    const char* buf = luaL_checklstring(L, 1, &buflen);
     uint8_t digest[32] = {0};
 
     dmCrypt::HashSha256((const uint8_t*)buf, buflen, digest);
@@ -37,8 +37,8 @@ static int Crypt_HashSha512(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 1);
 
-    const char* buf = luaL_checkstring(L, 1);
-    uint32_t buflen = strlen(buf);
+    size_t buflen;
+    const char* buf = luaL_checklstring(L, 1, &buflen);
     uint8_t digest[64] = {0};
 
     dmCrypt::HashSha512((const uint8_t*)buf, buflen, digest);
@@ -50,8 +50,8 @@ static int Crypt_HashMd5(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 1);
 
-    const char* buf = luaL_checkstring(L, 1);
-    uint32_t buflen = strlen(buf);
+    size_t buflen;
+    const char* buf = luaL_checklstring(L, 1, &buflen);
     uint8_t digest[16] = {0};
 
     dmCrypt::HashMd5((const uint8_t*)buf, buflen, digest);
@@ -63,8 +63,8 @@ static int Crypt_Base64Encode(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 1);
 
-    const char* src = luaL_checkstring(L, 1);
-    uint32_t srclen = strlen(src);
+    size_t srclen;
+    const char* src = luaL_checklstring(L, 1, &srclen);
 
     // 4 characters to represent every 3 bytes with padding applied
     // for binary data which isn't an exact multiple of 3 bytes.
@@ -88,8 +88,8 @@ static int Crypt_Base64Decode(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 1);
 
-    const char* src = luaL_checkstring(L, 1);
-    uint32_t srclen = strlen(src);
+    size_t srclen;
+    const char* src = luaL_checklstring(L, 1, &srclen);
 
     uint32_t dstlen = srclen * 3 / 4;
     uint8_t* dst = (uint8_t*)malloc(dstlen);

@@ -72,6 +72,13 @@ local function base64()
 		print("b64 decode:", decoded)
 		assert(source == decoded)
 	end
+
+	local table = { foo = "bar" }
+	pprint("table - source:", table)
+	local encoded = crypt.encode_base64(sys.serialize(table))
+	print("table - sys.serialize + b64 encode:", encoded)
+	local decoded = sys.deserialize(crypt.decode_base64(encoded))
+	pprint("table - b64 decode + sys.deserialize:", decoded)
 end
 
 function init(self)
