@@ -84,3 +84,34 @@
     return:
       - name: output
         type: string
+
+
+#*****************************************************************************************************
+
+  - name: encrypt_xtea
+    type: function
+
+    parameters:
+      - name: source
+        type: string
+      - name: key
+        type: string
+
+    return:
+      - name: output
+        type: string
+
+#*****************************************************************************************************
+
+  - name: decrypt_xtea
+    type: function
+
+    parameters:
+      - name: source
+        type: string
+      - name: key
+        type: string
+
+    return:
+      - name: output
+        type: string
