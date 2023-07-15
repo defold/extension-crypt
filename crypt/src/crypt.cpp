@@ -117,7 +117,7 @@ static int Crypt_EncryptXTEA(lua_State* L)
     const char* key = luaL_checklstring(L, 2, &keylen);
     if (keylen > 16)
     {
-      luaL_error(L, "key should be <=16");
+      return DM_LUA_ERROR("key should be <=16");
     }
 
     uint32_t dstlen = srclen;
@@ -127,7 +127,7 @@ static int Crypt_EncryptXTEA(lua_State* L)
     if (result != dmCrypt::RESULT_OK)
     {
         free(dst);
-        luaL_error(L, "error when encrypt");
+        return DM_LUA_ERROR( "error when encrypt");
     }
     else
     {
@@ -150,7 +150,7 @@ static int Crypt_DecryptXTEA(lua_State* L)
 
     if (keylen > 16)
     {
-      luaL_error(L, "key should be <=16");
+      return DM_LUA_ERROR("key should be <=16");
     }
 
     uint32_t dstlen = srclen;
@@ -161,7 +161,7 @@ static int Crypt_DecryptXTEA(lua_State* L)
     if(result != dmCrypt::RESULT_OK)
     {
         free(dst);
-        luaL_error(L, "error when decrypt");
+        return DM_LUA_ERROR("error when decrypt");
     }
     else
     {
