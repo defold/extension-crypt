@@ -106,7 +106,8 @@ static int Crypt_Base64Decode(lua_State* L)
     return 1;
 }
 
-static int Crypt_EncryptXTEA(lua_State* L){
+static int Crypt_EncryptXTEA(lua_State* L)
+{
     DM_LUA_STACK_CHECK(L, 1);
 
     size_t srclen;
@@ -114,7 +115,8 @@ static int Crypt_EncryptXTEA(lua_State* L){
 
     size_t keylen;
     const char* key = luaL_checklstring(L, 2, &keylen);
-    if(keylen>16){
+    if (keylen > 16)
+    {
       luaL_error(L, "key should be <=16");
     }
 
@@ -122,10 +124,13 @@ static int Crypt_EncryptXTEA(lua_State* L){
     char* dst = (char*) malloc(dstlen);
     memcpy(dst, src, dstlen);
     dmCrypt::Result result = dmCrypt::Encrypt(dmCrypt::ALGORITHM_XTEA, (uint8_t*)dst, dstlen, (uint8_t*)key, keylen);
-    if(result != dmCrypt::RESULT_OK){
+    if (result != dmCrypt::RESULT_OK)
+    {
         free(dst);
         luaL_error(L, "error when encrypt");
-    }else{
+    }
+    else
+    {
         lua_pushlstring(L, dst, dstlen);
         free(dst);
     }
@@ -133,7 +138,8 @@ static int Crypt_EncryptXTEA(lua_State* L){
     return 1;
 }
 
-static int Crypt_DecryptXTEA(lua_State* L){
+static int Crypt_DecryptXTEA(lua_State* L)
+{
     DM_LUA_STACK_CHECK(L, 1);
 
     size_t srclen;
@@ -142,7 +148,8 @@ static int Crypt_DecryptXTEA(lua_State* L){
     size_t keylen;
     const char* key = luaL_checklstring(L, 2, &keylen);
 
-    if(keylen>16){
+    if (keylen > 16)
+    {
       luaL_error(L, "key should be <=16");
     }
 
@@ -151,10 +158,13 @@ static int Crypt_DecryptXTEA(lua_State* L){
     memcpy(dst, src, dstlen);
 
     dmCrypt::Result result = dmCrypt::Decrypt(dmCrypt::ALGORITHM_XTEA, (uint8_t*)dst, dstlen, (uint8_t*)key, keylen);
-    if(result != dmCrypt::RESULT_OK){
+    if(result != dmCrypt::RESULT_OK)
+    {
         free(dst);
         luaL_error(L, "error when decrypt");
-    }else{
+    }
+    else
+    {
         lua_pushlstring(L, (char*)dst, dstlen);
         free(dst);
     }
