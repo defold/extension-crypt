@@ -24,6 +24,8 @@ The API provides the following functions:
 * `crypt.hash_md5(source)`
 * `crypt.encode_base64(source)`
 * `crypt.decode_base64(source)`
+* `crypt.encrypt_xtea(source, key)`
+* `crypt.decrypt_xtea(source, key)`
 
 
 ## Source code

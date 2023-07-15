@@ -84,3 +84,36 @@
     return:
       - name: output
         type: string
+
+
+#*****************************************************************************************************
+
+  - name: encrypt_xtea
+    type: function
+
+    parameters:
+      - name: source
+        type: string
+      - name: key
+        type: string
+        desc: key should be <=16
+
+    return:
+      - name: output
+        type: string
+
+#*****************************************************************************************************
+
+  - name: decrypt_xtea
+    type: function
+
+    parameters:
+      - name: source
+        type: string
+      - name: key
+        type: string
+        desc: key should be <=16
+
+    return:
+      - name: output
+        type: string

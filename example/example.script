@@ -81,10 +81,50 @@ local function base64()
 	pprint("table - b64 decode + sys.deserialize:", decoded)
 end
 
+local function encrypt_decrypt_xtea()
+	local test_string = "test string \t test aaaAAAAaaa123456789"
+	print("*****ENCRYPT/DECRYPT*****")
+	print("input:" .. test_string)
+
+	local keys = {
+		"",--empty also worked
+		"ABDCEFG12345",
+		"DEFOLD CRYPT"
+	}
+	for _, key in ipairs(keys) do
+		local encrypt = crypt.encrypt_xtea(test_string, key)
+		local decrypt = crypt.decrypt_xtea(encrypt, key)
+		print("key:" .. key)
+		print("result:" .. encrypt)
+		print("decrypt:" .. decrypt)
+		assert(decrypt == test_string)
+		assert(crypt.decrypt_xtea(encrypt, "bad key") ~= test_string)
+	end
+
+	local key17 = "1234567890abcdefg"
+	local status, error =pcall(crypt.encrypt_xtea, test_string, key17)
+	assert(not status)
+	assert(error == "key should be <=16")
+	status, error =pcall(crypt.decrypt_xtea, test_string, key17)
+	assert(not status)
+	assert(error == "key should be <=16")
+
+	
+
+	local test_string_zero_char = "test string\n\t\0 test aaaAAAAaaa123456789"
+	local encrypt_0 = crypt.encrypt_xtea(test_string_zero_char, "a")
+	local decrypt_0 = crypt.decrypt_xtea(encrypt_0, "a")
+	assert(test_string_zero_char == decrypt_0)
+
+
+	
+end
+
 function init(self)
 	hash1()
 	hash256()
 	hash512()
 	hashmd5()
 	base64()
+	encrypt_decrypt_xtea()
 end
