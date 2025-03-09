@@ -15,7 +15,7 @@
       - name: buffer
         type: string
 
-    return:
+    returns:
       - name: output
         type: string
 
@@ -28,7 +28,7 @@
       - name: buffer
         type: string
 
-    return:
+    returns:
       - name: output
         type: string
 
@@ -40,7 +40,7 @@
       - name: buffer
         type: string
 
-    return:
+    returns:
       - name: output
         type: string
 
@@ -52,7 +52,7 @@
       - name: buffer
         type: string
 
-    return:
+    returns:
       - name: output
         type: string
 
@@ -67,7 +67,7 @@
       - name: input
         type: string
 
-    return:
+    returns:
       - name: output
         type: string
 
@@ -81,7 +81,7 @@
       - name: input
         type: string
 
-    return:
+    returns:
       - name: output
         type: string
 
@@ -98,7 +98,7 @@
         type: string
         desc: key should be <=16
 
-    return:
+    returns:
       - name: output
         type: string
 
@@ -114,6 +114,6 @@
         type: string
         desc: key should be <=16
 
-    return:
+    returns:
       - name: output
         type: string
