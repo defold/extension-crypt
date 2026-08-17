@@ -32,5 +32,3 @@ The API provides the following functions:
 
 The source code is available on [GitHub](https://github.com/defold/extension-crypt)
 
-
-## API reference
